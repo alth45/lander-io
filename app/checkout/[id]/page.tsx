@@ -73,6 +73,7 @@ export default async function CheckoutPage({ params }: PageProps) {
               src={product.image}
               alt={product.title}
               fill
+              unoptimized
               className="object-cover transition-transform duration-700 group-hover:scale-105 group-hover:blur-[2px]" // Efek zoom & blur dikit pas hover
               priority
             />
