@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+    .text-primary {
+      color: #FF8C4B;
+    }
+    .bg-primary {
+      background-color: #FF8C4B;
+    }
+    .border-primary {
+      border-color: #FF8C4B;
+    }
+    /* Custom scrollbar hide */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-white text-[#333333]">
+  <div id="app">
+    <!-- Header -->
+    <header class="w-full bg-white py-4 border-b border-gray-100 sticky top-0 z-50">
+      <div class="container mx-auto px-4 flex flex-col lg:flex-row items-center justify-between gap-4">
+        <!-- Logo & Nav -->
+        <div class="flex items-center gap-8 w-full lg:w-auto justify-between lg:justify-start">
+          <a href="#" class="text-2xl font-bold text-[#333333]">Davici</a>
+          
+          <!-- Mobile Menu Button (Hidden on Desktop) -->
+          <button class="lg:hidden p-2 text-gray-600">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+          </button>
+
+          <!-- Desktop Nav -->
+          <nav class="hidden lg:flex items-center gap-6 text-sm font-medium text-gray-600">
+            <a href="#" class="text-[#FF8C4B]">Home</a>
+            <div class="flex items-center gap-1 cursor-pointer hover:text-[#FF8C4B]">
+              Shop <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </div>
+            <a href="#" class="hover:text-[#FF8C4B]">Blog</a>
+            <div class="flex items-center gap-1 cursor-pointer hover:text-[#FF8C4B]">
+              Vendors <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </div>
+            <div class="flex items-center gap-1 cursor-pointer hover:text-[#FF8C4B]">
+              Page <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </div>
+          </nav>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="flex items-center w-full lg:max-w-md bg-gray-100 rounded-md overflow-hidden border border-gray-200">
+          <input type="text" placeholder="Search..." class="flex-1 bg-transparent px-4 py-2.5 text-sm outline-none text-gray-600 placeholder-gray-400">
+          <div class="hidden sm:flex items-center px-3 border-l border-gray-300 text-sm text-gray-500 cursor-pointer hover:bg-gray-200 h-full">
+            All Category <svg class="w-3 h-3 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </div>
+          <button class="bg-[#333333] text-white px-4 py-3 hover:bg-black transition">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+          </button>
+        </div>
+
+        <!-- User Actions -->
+        <div class="hidden lg:flex items-center gap-6 text-sm font-medium text-gray-600">
+          <a href="#" class="hover:text-[#FF8C4B]">Login</a>
+          <div class="flex items-center gap-4">
+            <button class="hover:text-[#FF8C4B]">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+            </button>
+            <button class="hover:text-[#FF8C4B]">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+            </button>
+            <button class="hover:text-[#FF8C4B] relative">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+              <span class="absolute -top-1 -right-1 w-2 h-2 bg-[#FF8C4B] rounded-full"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative bg-[#F5F8FB] overflow-hidden">
+      <!-- Decorative Background Elements -->
+      <div class="absolute bottom-0 left-10 text-[200px] font-bold text-white leading-none opacity-50 select-none pointer-events-none">01</div>
+      <div class="absolute top-0 right-0 w-96 h-96 bg-[#FF8C4B] rounded-full opacity-5 translate-x-1/3 -translate-y-1/3 pointer-events-none"></div>
+
+      <div class="container mx-auto px-4 py-16 lg:py-24 flex flex-col lg:flex-row items-center relative z-10">
+        <!-- Content Left -->
+        <div class="w-full lg:w-1/2 space-y-6">
+          <div class="flex items-center gap-3 text-gray-500 text-sm">
+            <span class="w-0.5 h-4 bg-gray-400"></span>
+            <span>Davici furniture 2020</span>
+          </div>
+          <div class="space-y-2">
+            <h3 class="text-sm uppercase tracking-widest text-gray-500 font-medium">New Arrivals</h3>
+            <div class="w-12 h-0.5 bg-gray-300"></div>
+          </div>
+          <h1 class="text-5xl lg:text-7xl font-bold text-[#333333] leading-tight">
+            New <br/> Collection
+          </h1>
+          <button class="bg-[#FF8C4B] text-white px-8 py-3 rounded-md font-medium flex items-center gap-2 hover:bg-orange-600 transition shadow-lg shadow-orange-200">
+            Shop now
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+          </button>
+        </div>
+
+        <!-- Content Right (Images) -->
+        <div class="w-full lg:w-1/2 mt-12 lg:mt-0 relative h-[400px] lg:h-[500px]">
+          <!-- Plant Image -->
+          <div class="absolute left-0 bottom-0 w-48 lg:w-64 z-10">
+             <img src="https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&q=80&w=600" alt="Plant" class="w-full h-auto object-contain drop-shadow-xl">
+          </div>
+          <!-- Table Image -->
+          <div class="absolute right-0 top-10 w-64 lg:w-80">
+             <img src="https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&q=80&w=600" alt="Table" class="w-full h-auto object-contain drop-shadow-2xl rounded-lg">
+          </div>
+        </div>
+      </div>
+
+      <!-- Pagination -->
+      <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-2">
+        <button class="w-2.5 h-2.5 rounded-full bg-[#333333]"></button>
+        <button class="w-2.5 h-2.5 rounded-full border border-gray-400 hover:bg-gray-400"></button>
+        <button class="w-2.5 h-2.5 rounded-full border border-gray-400 hover:bg-gray-400"></button>
+      </div>
+    </section>
+
+    <!-- Shop by Categories -->
+    <section class="py-16 container mx-auto px-4">
+      <h2 class="text-2xl font-bold text-[#333333] mb-8">Shop by categories</h2>
+      <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+        <!-- Info Block -->
+        <div class="flex flex-col justify-center items-start space-y-4 p-6 bg-gray-50 rounded-lg">
+          <div class="w-12 h-12 border-2 border-[#333333] rounded-lg flex items-center justify-center mb-2">
+            <svg class="w-6 h-6 text-[#333333]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+          </div>
+          <div>
+            <span class="block text-xl font-bold text-[#333333]">200+</span>
+            <span class="text-gray-500 text-sm">Unique products</span>
+          </div>
+          <a href="#" class="text-xs font-bold text-[#333333] uppercase flex items-center gap-2 mt-4 hover:text-[#FF8C4B]">
+            All Categories 
+            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+          </a>
+        </div>
+
+        <!-- Category Cards -->
+        <div v-for="(cat, index) in categories" :key="index" class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition flex flex-col items-center text-center group border border-gray-100">
+          <div class="h-32 w-full flex items-center justify-center mb-4 overflow-hidden">
+            <img :src="cat.image" :alt="cat.name" class="h-full object-contain group-hover:scale-110 transition duration-300">
+          </div>
+          <h3 class="text-sm font-medium text-gray-700 group-hover:text-[#FF8C4B]">{{ cat.name }}</h3>
+        </div>
+      </div>
+    </section>
+
+    <!-- Promotional Banners -->
+    <section class="container mx-auto px-4 mb-16">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Banner 1 -->
+        <div class="relative h-64 md:h-80 rounded-lg overflow-hidden group">
+          <img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?auto=format&fit=crop&q=80&w=800" class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-105" alt="Living Room">
+          <div class="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition"></div>
+          <div class="absolute inset-0 flex items-center justify-center">
+            <div class="border border-white/80 p-6 md:p-10 text-center bg-white/10 backdrop-blur-sm">
+              <p class="text-xs text-white/90 mb-2 tracking-wider">30% OFF ALL ORDER</p>
+              <h3 class="text-2xl md:text-3xl font-bold text-white mb-4">Living Room</h3>
+              <button class="bg-[#FF8C4B] text-white px-6 py-2 rounded text-sm font-medium hover:bg-orange-600 transition">Shop now</button>
+            </div>
+          </div>
+        </div>
+        <!-- Banner 2 -->
+        <div class="relative h-64 md:h-80 rounded-lg overflow-hidden group">
+          <img src="https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&q=80&w=800" class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-105" alt="Dining Room">
+          <div class="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition"></div>
+          <div class="absolute inset-0 flex items-center justify-center">
+            <div class="border border-white/80 p-6 md:p-10 text-center bg-white/10 backdrop-blur-sm">
+              <p class="text-xs text-white/90 mb-2 tracking-wider">30% OFF ALL ORDER</p>
+              <h3 class="text-2xl md:text-3xl font-bold text-white mb-4">Dining Room</h3>
+              <button class="bg-[#FF8C4B] text-white px-6 py-2 rounded text-sm font-medium hover:bg-orange-600 transition">Shop now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hot Products Section -->
+    <section class="container mx-auto px-4 pb-20">
+      <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+        <h2 class="text-2xl font-bold text-[#333333]">Hot Products</h2>
+        
+        <div class="flex overflow-x-auto no-scrollbar gap-8 text-sm font-medium border-b border-gray-200 md:border-none pb-2 md:pb-0">
+          <button 
+            v-for="tab in tabs" 
+            :key="tab" 
+            @click="activeTab = tab"
+            :class="activeTab === tab ? 'text-[#333333] border-b-2 border-[#FF8C4B]' : 'text-gray-400 hover:text-gray-600'"
+            class="whitespace-nowrap pb-1 transition-colors"
+          >
+            {{ tab }}
+          </button>
+        </div>
+
+        <a href="#" class="hidden md:flex items-center gap-2 text-sm font-medium text-[#333333] hover:text-[#FF8C4B]">
+          All products <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+        </a>
+      </div>
+
+      <!-- Product Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div v-for="product in products" :key="product.id" class="bg-white group rounded-lg border border-gray-100 hover:shadow-lg transition duration-300 overflow-hidden relative">
+          
+          <!-- Badges -->
+          <div class="absolute top-3 right-3 flex flex-col gap-2 z-10">
+            <span v-if="product.discount" class="bg-[#E74C3C] text-white text-[10px] font-bold px-2 py-1 rounded">{{ product.discount }}</span>
+            <span v-if="product.isHot" class="bg-[#FF8C4B] text-white text-[10px] font-bold px-2 py-1 rounded">HOT</span>
+          </div>
+
+          <!-- Image -->
+          <div class="h-64 w-full bg-gray-50 flex items-center justify-center p-4 relative">
+            <img :src="product.image" :alt="product.name" class="max-h-full max-w-full object-contain mix-blend-multiply group-hover:scale-105 transition duration-500">
+            
+            <!-- Hover Actions -->
+            <div class="absolute bottom-4 left-0 right-0 flex justify-center gap-2 opacity-0 group-hover:opacity-100 transition duration-300 translate-y-4 group-hover:translate-y-0">
+               <button class="w-8 h-8 bg-white rounded-full shadow flex items-center justify-center hover:bg-[#FF8C4B] hover:text-white transition">
+                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+               </button>
+               <button class="w-8 h-8 bg-white rounded-full shadow flex items-center justify-center hover:bg-[#FF8C4B] hover:text-white transition">
+                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+               </button>
+               <button class="w-8 h-8 bg-white rounded-full shadow flex items-center justify-center hover:bg-[#FF8C4B] hover:text-white transition">
+                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+               </button>
+            </div>
+          </div>
+
+          <!-- Timer (Conditional) -->
+          <div v-if="product.timer" class="mx-4 -mt-3 relative z-10 bg-white border border-orange-100 shadow-sm rounded py-1 px-2 text-center">
+            <p class="text-[10px] text-gray-500">End in: <span class="font-bold text-[#333333]">{{ product.timer }}</span></p>
+          </div>
+
+          <!-- Details -->
+          <div class="p-4">
+            <div class="flex items-center gap-1 mb-1">
+              <div class="flex text-[#F7DC6F]">
+                <svg v-for="i in 5" :key="i" class="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              </div>
+              <span class="text-[10px] text-gray-400">({{ product.reviews }} reviews)</span>
+            </div>
+            <h3 class="text-sm font-medium text-[#333333] mb-1 truncate">{{ product.name }}</h3>
+            <div class="flex items-center gap-2 text-sm">
+              <span v-if="product.oldPrice" class="text-gray-400 line-through text-xs">{{ product.oldPrice }}</span>
+              <span class="font-bold text-[#FF8C4B]">{{ product.price }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const { createApp, ref } = Vue;
+
+    createApp({
+      setup() {
+        const activeTab = ref('LATEST PRODUCTS');
+        const tabs = ['LATEST PRODUCTS', 'TOP RATING', 'BEST SELLERS'];
+
+        const categories = [
+          { name: 'Dining Chair', image: 'https://images.unsplash.com/photo-1519947486511-46149fa0a254?auto=format&fit=crop&q=80&w=300' },
+          { name: 'Sofas', image: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&q=80&w=300' },
+          { name: 'Table', image: 'https://images.unsplash.com/photo-1530018607912-eff2daa1bac4?auto=format&fit=crop&q=80&w=300' }
+        ];
+
+        const products = [
+          {
+            id: 1,
+            name: 'Chair Padded Seat',
+            image: 'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?auto=format&fit=crop&q=80&w=400',
+            price: '$80.00',
+            oldPrice: '$100.00',
+            reviews: 2,
+            discount: '-20%',
+            timer: '259d : 14h : 44m : 52s'
+          },
+          {
+            id: 2,
+            name: 'Briarwood Decorative 2',
+            image: 'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?auto=format&fit=crop&q=80&w=400',
+            price: '$25.00',
+            oldPrice: '$40.00',
+            reviews: 0,
+            discount: '-38%',
+            isHot: false
+          },
+          {
+            id: 3,
+            name: 'Aqua Globes 2',
+            image: 'https://images.unsplash.com/photo-1580480055273-228ff5388ef8?auto=format&fit=crop&q=80&w=400',
+            price: '$25.00',
+            oldPrice: '$30.00',
+            reviews: 0,
+            isHot: true
+          },
+          {
+            id: 4,
+            name: 'Aqua Globes',
+            image: 'https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&q=80&w=400',
+            price: '$25.00 - $30.00',
+            reviews: 0,
+            isHot: true,
+            discount: '-18%'
+          },
+          {
+            id: 5,
+            name: 'CWI Gifts Wood',
+            image: 'https://images.unsplash.com/photo-1513506003013-d5347641d3db?auto=format&fit=crop&q=80&w=400',
+            price: '$21.00',
+            oldPrice: '$30.00',
+            reviews: 0,
+            discount: '-30%'
+          },
+          {
+            id: 6,
+            name: 'Alarm Clock',
+            image: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&q=80&w=400',
+            price: '$250.00',
+            reviews: 0,
+            isHot: true
+          },
+          {
+            id: 7,
+            name: 'AmazonBasics 2-Seater',
+            image: 'https://images.unsplash.com/photo-1540932296774-3ed6d23f9b58?auto=format&fit=crop&q=80&w=400',
+            price: '$12.00',
+            oldPrice: '$20.00',
+            reviews: 1,
+            isHot: true,
+            timer: '316d : 14h : 44m : 52s'
+          },
+          {
+            id: 8,
+            name: 'Furniture Moving Kit',
+            image: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&q=80&w=400',
+            price: '$12.00 - $30.51',
+            reviews: 1,
+            isHot: false
+          }
+        ];
+
+        return {
+          activeTab,
+          tabs,
+          categories,
+          products
+        };
+      }
+    }).mount('#app');
+  </script>
+</body>
+</html>

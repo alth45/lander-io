@@ -1,26 +1,86 @@
 @import "tailwindcss";
-
+/* 1. DEFINISI VARIABEL WARNA & FONT */
+/* 1. DEFAULT (LIGHT MODE) */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Di Light Mode, "Dark" colors kita balik menjadi terang */
+  --color-dark-800: #f1f5f9; /* Slate 100 */
+  --color-dark-900: #f8fafc; /* Slate 50 */
+  --color-dark-950: #ffffff; /* White - Background Utama */
+  
+  /* Text Color untuk Body (Override Tailwind default) */
+  --text-main: #0f172a; /* Slate 900 (Gelap) agar terbaca di background putih */
+
+  /* Brand Colors (Bisa dibiarkan sama atau disesuaikan) */
+  --color-brand-50: #eef2ff;
+  --color-brand-100: #e0e7ff;
+  --color-brand-400: #818cf8;
+  --color-brand-500: #6366f1;
+  --color-brand-600: #4f46e5;
+  --color-brand-900: #312e81;
+
+  /* Background Utama (Gelap) */
+  --background: #020617; /* Dark 950 */
+  --background-secondary: #0f172a; /* Dark 900 */
+  /* Text Utama (Harus Putih agar terbaca) */
+  --foreground: #f8fafc; /* Slate 50 */
+  --foreground-muted: #94a3b8; /* Slate 400 */
+  
+  /* Border/Garis (Putih Transparan) */
+  --border: rgba(255, 255, 255, 0.1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* 2. DARK MODE OVERRIDE */
+.dark {
+  /* Kembalikan ke warna asli desain gelap Anda */
+  --color-dark-800: #1e293b;
+  --color-dark-900: #0f172a;
+  --color-dark-950: #020617; /* Background Asli */
+  
+  --text-main: #cbd5e1; /* Slate 300 (Terang) agar terbaca di background gelap */
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--background);
+  color: var(--foreground); /* Gunakan variabel baru untuk text */
+  font-family: var(--font-jakarta), sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Transisi halus */
+}
+
+/* 3. SCROLLBAR CUSTOM */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--color-dark-900); 
+}
+::-webkit-scrollbar-thumb {
+    background: var(--color-brand-600); 
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #4338ca; /* Indigo 700 */
+}
+
+/* 4. ANIMASI (NATIVE CSS KEYFRAMES) */
+/* Kita pindahkan dari tailwind config ke sini agar lebih clean */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-100%); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+/* 5. UTILITY CLASSES UNTUK ANIMASI */
+/* Kita buat class manual agar bisa dipanggil di HTML */
+@layer utilities {
+  .animate-marquee {
+    animation: marquee 25s linear infinite;
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
 }
